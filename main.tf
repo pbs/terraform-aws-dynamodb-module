@@ -43,8 +43,18 @@ resource "aws_dynamodb_table" "table" {
       non_key_attributes = global_secondary_index.value.non_key_attributes
       projection_type    = global_secondary_index.value.projection_type
       range_key          = global_secondary_index.value.range_key
-      read_capacity      = global_secondary_index.value.read_capacity
-      write_capacity     = global_secondary_index.value.write_capacity
+      read_capacity      = lookup(global_secondary_index.value, "read_capacity", null)
+      write_capacity     = lookup(global_secondary_index.value, "write_capacity", null)
+    }
+  }
+
+  dynamic "local_secondary_index" {
+    for_each = var.local_secondary_indices
+    content {
+      name               = local_secondary_index.key
+      non_key_attributes = local_secondary_index.value.non_key_attributes
+      projection_type    = local_secondary_index.value.projection_type
+      range_key          = local_secondary_index.value.range_key
     }
   }
 
@@ -71,6 +81,10 @@ resource "aws_appautoscaling_target" "dynamodb_table_read_target" {
   resource_id        = "table/${local.name}"
   scalable_dimension = "dynamodb:table:ReadCapacityUnits"
   service_namespace  = "dynamodb"
+
+  depends_on = [
+    aws_dynamodb_table.table,
+  ]
 }
 
 resource "aws_appautoscaling_policy" "dynamodb_table_read_policy" {
@@ -101,6 +115,10 @@ resource "aws_appautoscaling_target" "dynamodb_table_write_target" {
   resource_id        = "table/${local.name}"
   scalable_dimension = "dynamodb:table:WriteCapacityUnits"
   service_namespace  = "dynamodb"
+
+  depends_on = [
+    aws_dynamodb_table.table,
+  ]
 }
 
 resource "aws_appautoscaling_policy" "dynamodb_table_write_policy" {

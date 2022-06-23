@@ -16,11 +16,17 @@ variable "hash_key" {
 variable "range_key" {
   description = "DynamoDB Table Range Key"
   default     = null
-  type        = string
+  type        = map(any)
 }
 
 variable "global_secondary_indices" {
   description = "Map of global secondary indices"
+  default     = {}
+  type        = map(any)
+}
+
+variable "local_secondary_indices" {
+  description = "Map of local secondary indices"
   default     = {}
   type        = map(any)
 }

@@ -6,7 +6,7 @@
 
 ```hcl
 module "dynamodb" {
-    source = "github.com/pbs/terraform-aws-dynamodb-module?ref=0.0.1"
+    source = "github.com/pbs/terraform-aws-dynamodb-module?ref=x.y.z"
 }
 ```
 
@@ -26,7 +26,7 @@ Integrate this module like so:
 
 ```hcl
 module "dynamodb" {
-  source = "github.com/pbs/terraform-aws-dynamodb-module?ref=0.0.1"
+  source = "github.com/pbs/terraform-aws-dynamodb-module?ref=x.y.z"
 
   # Tagging Parameters
   organization = var.organization
@@ -42,7 +42,7 @@ module "dynamodb" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`0.0.1`
+`x.y.z`
 
 Note, however that subtrees can be altered as desired within repositories.
 
@@ -94,12 +94,13 @@ No modules.
 | <a name="input_enable_point_in_time_recovery"></a> [enable\_point\_in\_time\_recovery](#input\_enable\_point\_in\_time\_recovery) | Enable point in time recovery | `bool` | `true` | no |
 | <a name="input_global_secondary_indices"></a> [global\_secondary\_indices](#input\_global\_secondary\_indices) | Map of global secondary indices | `map(any)` | `{}` | no |
 | <a name="input_hash_key"></a> [hash\_key](#input\_hash\_key) | DynamoDB Table Hash Key | `map(any)` | <pre>{<br>  "name": "id",<br>  "type": "S"<br>}</pre> | no |
+| <a name="input_local_secondary_indices"></a> [local\_secondary\_indices](#input\_local\_secondary\_indices) | Map of local secondary indices | `map(any)` | `{}` | no |
 | <a name="input_max_capacity"></a> [max\_capacity](#input\_max\_capacity) | Maximum capacity for the database | `number` | `20` | no |
 | <a name="input_min_capacity"></a> [min\_capacity](#input\_min\_capacity) | Minimum capacity for the database | `number` | `5` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name for the table | `string` | `null` | no |
 | <a name="input_prod_max_capacity"></a> [prod\_max\_capacity](#input\_prod\_max\_capacity) | Maximum capacity for the production database. Defaults to max\_capacity | `number` | `null` | no |
 | <a name="input_prod_min_capacity"></a> [prod\_min\_capacity](#input\_prod\_min\_capacity) | Minimum capacity for the production database. Defaults to min\_capacity | `number` | `null` | no |
-| <a name="input_range_key"></a> [range\_key](#input\_range\_key) | DynamoDB Table Range Key | `string` | `null` | no |
+| <a name="input_range_key"></a> [range\_key](#input\_range\_key) | DynamoDB Table Range Key | `map(any)` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Extra tags | `map(string)` | `{}` | no |
 | <a name="input_target_value"></a> [target\_value](#input\_target\_value) | Target value for the metric | `number` | `70` | no |
 | <a name="input_ttl"></a> [ttl](#input\_ttl) | Attribute to use for TTL. If null, will not use ttl | `string` | `null` | no |
