@@ -40,9 +40,9 @@ resource "aws_dynamodb_table" "table" {
     content {
       name               = global_secondary_index.key
       hash_key           = global_secondary_index.value.hash_key
-      non_key_attributes = global_secondary_index.value.non_key_attributes
+      non_key_attributes = lookup(global_secondary_index.value, "non_key_attributes", null)
       projection_type    = global_secondary_index.value.projection_type
-      range_key          = global_secondary_index.value.range_key
+      range_key          = lookup(global_secondary_index.value, "range_key", null)
       read_capacity      = lookup(global_secondary_index.value, "read_capacity", null)
       write_capacity     = lookup(global_secondary_index.value, "write_capacity", null)
     }
@@ -52,7 +52,7 @@ resource "aws_dynamodb_table" "table" {
     for_each = var.local_secondary_indices
     content {
       name               = local_secondary_index.key
-      non_key_attributes = local_secondary_index.value.non_key_attributes
+      non_key_attributes = lookup(local_secondary_index.value, "non_key_attributes", null)
       projection_type    = local_secondary_index.value.projection_type
       range_key          = local_secondary_index.value.range_key
     }
