@@ -6,7 +6,7 @@
 
 ```hcl
 module "dynamodb" {
-    source = "github.com/pbs/terraform-aws-dynamodb-module?ref=0.1.1"
+    source = "github.com/pbs/terraform-aws-dynamodb-module?ref=0.1.2"
 }
 ```
 
@@ -26,7 +26,7 @@ Integrate this module like so:
 
 ```hcl
 module "dynamodb" {
-  source = "github.com/pbs/terraform-aws-dynamodb-module?ref=0.1.1"
+  source = "github.com/pbs/terraform-aws-dynamodb-module?ref=0.1.2"
 
   # Tagging Parameters
   organization = var.organization
@@ -42,7 +42,7 @@ module "dynamodb" {
 
 If this repo is added as a subtree, then the version of the module should be close to the version shown here:
 
-`0.1.1`
+`0.1.2`
 
 Note, however that subtrees can be altered as desired within repositories.
 
