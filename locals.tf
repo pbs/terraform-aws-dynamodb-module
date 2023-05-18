@@ -14,6 +14,7 @@ locals {
     type = att.type
   }]
 
+  # tflint-ignore: terraform_deprecated_interpolation
   ttl = var.ttl != null ? { "${var.ttl}" = { enabled = true } } : {}
 
   creator = "terraform"
