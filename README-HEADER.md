@@ -1,13 +1,13 @@
-# PBS TF dynamodb module
+# PBS TF DynamoDB Module
 
 ## Installation
 
 ### Using the Repo Source
 
+Use this URL for the source of the module. See the usage examples below for more details.
+
 ```hcl
-module "dynamodb" {
-    source = "github.com/pbs/terraform-aws-dynamodb-module?ref=x.y.z"
-}
+github.com/pbs/terraform-aws-MOD_NAME?ref=x.y.z
 ```
 
 ### Alternative Installation Methods
